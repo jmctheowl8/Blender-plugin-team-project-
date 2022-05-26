@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#CC -gcpit c2-standard-4
+
+#Slurm HPC Scheduler
+
+#SBATCH -N 8
+
+export SHARED_FS_NAME=/mnt/orangefs 
+
+#Uncomment this section for use with openMPI
+
+module add openmpi/3.0.0
+
+cd $SHARED_FS_NAME/blender/blenderjobs
+
+mpiexec /software/blender/3.10/blender -b Wolf-Blender2.82a.blend -o $SHARED_FS_NAME/blender/frame_#### -E CYCLES -F png  -a 
+
